@@ -68,7 +68,7 @@ void brecaEspectaculos(void) {
 		}
 	}
 
-	// MEJORAR
+	//
 	*(*(espectaculos + 0) + 0) = "a";
 	*(*(espectaculos + 1) + 0) = "b";
 	*(*(espectaculos + 2) + 0) = "c";
