@@ -50,11 +50,12 @@ int main(int argc, char const *argv[])
 	for (int i = 0; i < 3; ++i) {	
 		int random = rand() % 9999;
 		char *charAux = asignarMemoriaString(50);
+		strcpy(charAux, "");
 
 		g[i].id = i;
 		g[i].artista = a.id;
 		g[i].foto = asignarMemoriaString(100);
-		g[i].foto = "imagen_ejemplo_";
+		strcpy(g[i].foto, "imagen_ejemplo_");
 
 		sprintf(charAux, "%d", random);
 		strcat(g[i].foto, charAux);
@@ -73,7 +74,7 @@ int main(int argc, char const *argv[])
 		printf("--> Galeria del artista:\n\n");
 
 		for(int i = 0; i < 3; ++i) {
-			if(a.galeria == g[i].id) {
+			if(a.galeria == g[i].artista) {
 				printf("\t%s\n", g[i].foto);
 			}
 		}
