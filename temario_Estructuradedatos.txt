@@ -1,0 +1,265 @@
+/************************************/
+		Estructuras de datos I
+/************************************/
+
+1. Tipos de datos Estructurados
+	1.1. Arreglo
+	1.2. Registro
+	1.3. Unión
+	1.4. Enumerado
+	1.5. Anidaciones estructural
+
+2. Paradigma POO
+	2.1. Clase
+	2.1.1. Atributos
+	2.1.2. Métodos
+	2.1.2.1. Contructores/Destructores
+	2.1.2.2. Métodos de interfaz
+	2.2. Objetos
+
+3. TDA Lista, implementación estática
+	3.1. Modelo.
+	3.2. Operaciones.
+	3.3. Implementación.
+
+4. TDA Pila, implementación estática
+	4.1. Modelo.
+	4.2. Operaciones.
+	4.3. Implementación.
+
+5. TDA Cola, implementación estática
+	5.1. Modelo.
+	5.2. Operaciones.
+	5.3. Implementación.
+
+6. Búsquedas
+	6.1. Lineal
+	6.2. Binaria
+
+7. Ordenamientos
+	7.1. Iterativos
+	7.2. Recursivos (Recursividad)
+
+8. Almacenamiento secundario 
+
+9. Apuntadores
+
+10. TDA Lista, implementación dinámica
+	10.1. Simple
+	10.2. Doble
+	10.3. circular
+	10.4. Con encabezados
+
+11. TDA Pila, implementación dinámica 
+
+12. TDA Cola, implementación dinámica 
+
+13. TDA Árbol, implementación dinámica
+	13.1. Árbol de búsqueda binaria
+	13.2. Árbol AVL
+
+
+
+/*************************************************/
+		Seminario de estructuras de datos I
+/*************************************************/
+
+1. Contenedores de datos
+	1.1. Tipos de datos Estructurados
+	1.2. Objetos
+	1.3. anidaciones estructural
+
+2. TDA Lista, implementación estática
+
+3. TDA Pila, implementación estática
+
+4. TDA Cola, implementación estática
+
+5. Búsquedas
+	5.1. Lineal
+	5.2. Binaria
+
+6. Ordenamientos
+	6.1. Iterativos
+	6.2. Recursivos (Recursividad)
+
+7. Almacenamiento secundario
+
+8. Apuntadores
+
+9. TDA Lista, implementación dinámica
+	9.1. Simple
+	9.2. Doble
+	9.3. circular
+	9.4. Con encabezados
+
+10. TDA Pila, implementación dinámica
+
+11. TDA Cola, implementación dinámica
+
+12. TDA Árbol, implementación dinámica
+	12.1. Árbol de búsqueda binaria
+	12.2. Árbol AVL
+
+
+/************************************/
+		Estructuras de datos II
+/************************************/
+
+1. Almacenamiento Secundario
+	1. Introducción de Archivos
+	2. Conceptos de campo y registros
+	3. Concepto de archivo (lógico y físico)
+	4. Registros de Longitud Variable: Delimitadores y Campos de Dimensión
+	5. Registros de longitud fija
+
+2. TDAs
+	1. TDA pila, cola y lista
+		a) Método cargar
+		b) Método guardar
+	2. TDA Árbol
+		a) Método cargar
+		b) Método guardar
+		c) Aplicación: arboles paginado
+	3. TDA Grafos
+		a) Grafo Estático (Dirigidos / No dirigidos y Ponderados / No ponderados)
+			1. Método cargar
+			2. Método guardar
+		b) TDA Grafo Dinámico(Dirigidos / No dirigidos y Ponderados / No ponderados)
+			1. Método cargar
+			2. Método guardar
+
+3. Indización
+	1. Manejo de Índices en TDA´s
+	2. Índices Secundarios
+	3. Aplicación: Listas Invertidas
+	4. Aplicación: Tablas Hash
+
+4. Acceso Aleatorio
+	1. Acceso Aleatorio a un archivo mediante Dispersión
+	2. Manejo de colisiones
+	3. Saturación progresiva
+	4. Compartimientos
+	5. Aplicación: Tablas de dispersión
+
+
+5. Serialización
+	1. Introducción
+	2. Serialización
+	3. Ejemplos.
+
+6. Árboles en la gestión de Archivos
+	1. Compresión y Encriptación de datos a través de Huffman
+		a) Gestión de memoria principal
+		b) Ordenamientos
+		c) Gestión del Árbol Binario
+		d) Diccionario de Datos
+		e) Traducción y Empaquetamiento
+		f) Encriptación y Desencriptación
+		g) Compresión y descompresión
+	2. Árboles Binarios de búsqueda
+		a) Carga de Índices en árboles binarios
+		b) Operaciones de inserción y búsqueda
+		c) Operaciones de eliminación y modificación
+
+
+/*************************************************/
+		Seminario de estructuras de datos II
+/*************************************************/
+
+UNIDAD I. Registros de Longitud Variable Y Fijos
+	1. Técnica con delimitadores
+	2. Técnica con campos de dimensión
+	3. Registros de longitud fija
+
+UNIDAD II. Grafos
+	1. TDA Grafo Estático
+		a. Dirigidos / No dirigidos
+		b. Ponderados / No ponderados
+	2. TDA Grafo Dinámico
+		a. Dirigidos / No dirigidos
+		b. Ponderados / No ponderados
+
+UNIDAD III. Indización
+	1. Indización
+	2. Manejo de Índices en TDA´s
+	3. Índices Secundarios
+		a. Árboles
+		b. Listas Invertidas
+
+UNIDAD IV. Acceso Aleatorio
+	1. Acceso Aleatorio a un archivo mediante Dispersión
+	2. Manejo de colisiones
+	3. Saturación progresiva
+	4. Compartimientos
+	5. Tablas de dispersión
+
+UNIDAD V. Serialización
+	1. Introducción
+	2. Serialización
+
+UNIDAD VI. Árbol Binario Paginado
+	1. Introducción
+	2. Creación
+	3. Búsquedas
+	4. Implementación
+
+
+/************************************/
+		Algoritmia
+/************************************/
+
+Módulo 1. Introducción a la algoritmia
+	Conceptos básicos
+	Eficiencia de un algoritmo
+
+Módulo 2. Análisis de los algoritmos
+	Análisis de instrucciones en un algoritmo
+	Análisis de estructuras condicionales
+	Análisis de estructuras iterativas
+
+Módulo 3. Dominio asintótico (14hrs)
+	Definición
+	Dominio asintótico entre funciones
+	Notaciones asintóticas: O, o, Ω, ω y θ.
+
+Módulo 4. Algoritmos de fuerza bruta
+
+Módulo 5. Algoritmos voraces
+	Definiciones básicas de teoría de grafos
+	Kruskal
+	Prim
+	Dijkstra
+	Caminos mínimos
+
+Módulo 6. Análisis de algoritmos recursivos
+	Sustitución
+	Árbol de recursividad
+
+Módulo 7. Algoritmos basados en estrategia de Divide y vencerás
+
+Módulo 8. Algoritmos basados en estrategia de Backtracking
+
+Módulo 9. Algoritmos basados en estrategia de programación dinámica
+
+
+/*************************************************/
+		Seminario de algoritmia
+/*************************************************/
+
+Módulo 1. Interfaces gráficas, contenedores de datos anidados
+
+Módulo 2. Ordenamientos recursivos. Eliminaciones secuenciales
+
+Módulo 3. Búsquedas. Eliminación por coincidencias. Almacenamiento secundario
+
+Módulo 4. Grafo dinámico
+
+Módulo 5. Prim. Kruskal
+
+Módulo 6. Dijkstra (pesos mínimos)
+
+Módulo 7. Dijkstra (camino más corto)
+
+
+
