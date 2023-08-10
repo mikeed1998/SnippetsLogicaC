@@ -11,9 +11,13 @@ void _04_01_increment(int);
 void _04_02_increment_pointer(int*);
 void _05_pointers_and_arrays(void);
 void _06_arrays_as_function_arguments(void);
+int _06_01_sumOfElements(int*, int);
+void _06_02_double(int*, int);
+void _07_character_arrays_and_pointers(void);
 
 int main(int argc, char const *argv[])
 {
+	_07_character_arrays_and_pointers();
 	
 	return 0;
 }
@@ -149,5 +153,36 @@ void _05_pointers_and_arrays(void) {
 }
 
 void _06_arrays_as_function_arguments(void) {
-	
+	int A[] = {1, 2, 3, 4, 5};
+	int size = sizeof(A) / sizeof(A[0]);
+	int total = _06_01_sumOfElements(A, size);
+
+	printf("Sum of elements = %d\n", total);
+
+	_06_02_double(A, size);
+
+	for (int i = 0; i < size; ++i)
+	{
+		printf("%d ", A[i]);
+	}
+}
+
+int _06_01_sumOfElements(int *A, int size) {
+	int i, sum = 0;
+	for(i = 0; i < size; i++) {
+		sum += A[i];
+	}
+
+	return sum;
+}
+
+void _06_02_double(int *A, int size) {
+	int i;
+	for(i = 0; i < size; i++) {
+		A[i] = 2 * A[i];
+	}
+}
+
+void _07_character_arrays_and_pointers(void) {
+
 }
