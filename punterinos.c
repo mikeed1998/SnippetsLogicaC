@@ -14,10 +14,24 @@ void _06_arrays_as_function_arguments(void);
 int _06_01_sumOfElements(int*, int);
 void _06_02_double(int*, int);
 void _07_character_arrays_and_pointers(void);
+void _08_character_arrays_and_pointers_2(void);
+void _08_01_print(char*);
+void _09_character_arrays_and_pointers_3(void);
+void _09_01_print(char*);
+void _09_02_print(const char*);
+void _10_pointers_and_multidimensional_arrays(void);
+void _11_pointers_and_multidimensional_arrays_2(void);
+void _11_01_func(int*);				// Argument: 1-D array of integers (Static) and (Dynamic)
+void _11_02_func(int(*)[]);			// Argument: 2-D array of integers (Static)
+void _11_03_func(int(*)[2][2]);		// Argument: 3-D array of integers (Static)
+void _12_pointers_and_dynamic_memory(void);
+void _13_stack_vs_heap(void);
+void _14_malloc_calloc_realloc_free(void);
+void _15_pointers_as_function_returns(void);
 
 int main(int argc, char const *argv[])
 {
-	_07_character_arrays_and_pointers();
+	_14_malloc_calloc_realloc_free();
 	
 	return 0;
 }
@@ -184,5 +198,222 @@ void _06_02_double(int *A, int size) {
 }
 
 void _07_character_arrays_and_pointers(void) {
+	char c[5];
+	
+	c[0] = 'J';
+	c[1] = 'O';
+	c[2] = 'H';
+	c[3] = 'N';
+	c[4] = '\0';
+
+	int len = strlen(c);
+
+	printf("String: %s, length = %d\n", c, len);
+
+	char c2[] = "JOHN";
+	printf("Size in bytes = %d\n", sizeof(c2));
+	len = strlen(c2);
+	printf("String: %s, length = %d\n", c2, len);
+
+	char c3[5] = {'J', 'O', 'H', 'N', '\0'};
+	len = strlen(c3);
+	printf("String: %s, length = %d\n", c3, len);
+}
+
+void _08_character_arrays_and_pointers_2(void) {
+	// Arrays are always passed to function by reference
+	char c[20] = "Hello";
+
+	_08_01_print(c);
+}
+
+void _08_01_print(char* c) {
+	while(*c != '\0') {
+		printf("%c", *c);
+		c++;
+	}
+	printf("\n");
+}
+
+void _09_character_arrays_and_pointers_3(void) {
+	char c[20] = "Hello";		// string gets stored in the space for array
+	// char *c = "Hello"; 				// string gets stored as compile time constant
+	_09_01_print(c);
+	_09_02_print(c);
+}
+
+void _09_01_print(char* c) {
+	c[0] = 'A';
+
+	while(*c != '\0') {
+		printf("%c", *c);
+		c++;
+	}
+	printf("\n");
+}
+
+void _09_02_print(const char* c) {
+	while(*c != '\0') {
+		printf("%c", *c);
+		c++;
+	}
+	printf("\n");
+}
+
+void _10_pointers_and_multidimensional_arrays(void) {
+	int c[3][2][2] = {
+		{ {2, 5}, {7, 9} },
+		{ {3, 4}, {6, 1} },
+		{ {0, 8}, {11, 13} }
+	};
+
+	printf("%d %d %d %d\n", c, *c, c[0], &c[0][0]);
+	printf("%d\n", *(c[0][0] + 1));
+}
+
+void _11_pointers_and_multidimensional_arrays_2(void) {
+	int a[2] = {1, 2};
+	int b[2][3] = {{2,4,6}, {5,7,8}};		// B returns int (*)[3]
+	int c[3][2][2] = {
+		{ {2, 5}, {7, 9} },
+		{ {3, 4}, {6, 1} },
+		{ {0, 8}, {11, 13} }
+	};
+
+	
+	int x[2][4];
+
+	_11_01_func(a);		// A returns int*
+	_11_02_func(b);		// A returns int(*)[]
+	_11_03_func(c);		// A returns int(*)[][]
 
 }
+
+void _11_01_func(int *A) {
+	printf("int*\n\n");
+}
+
+void _11_02_func(int (*A)[3]) {
+	printf("int(*)[]\n\n");
+}
+
+void _11_03_func(int (*A)[2][2]) {
+	printf("int(*)[][]\n\n");
+}
+
+void _12_pointers_and_dynamic_memory(void) {
+	/*
+		Application Memory
+		
+		------------------
+		|      Heap      | ------> Free Store (Dynamic Memory Allocation)
+		------------------
+		|      Stack     | ------> Function calls and local variables
+		------------------
+		|  Static/Global | ------> Static and Global variables
+		------------------
+		|   Code (Text)  | ------> Instructions
+		------------------
+	*/
+	/*
+		Dynamic Memory functions:
+
+		C:
+			malloc
+			calloc
+			realloc
+			free
+		C++:
+			new
+			delete
+	*/
+}
+
+void _13_stack_vs_heap(void) {
+	int a; 		// goes on stack
+	int *p;
+
+	p = (int*)malloc(sizeof(int));
+	*p = 10;
+	free(p);
+
+	p = (int*)malloc(20 * sizeof(int));
+	*p = 20;
+	free(p);
+}
+
+void _14_malloc_calloc_realloc_free(void) {
+	// Allocate block of memory
+	/*
+		malloc - void* malloc(size_t size); 				|_ unsigned int _| return block of memory of X bytes
+		calloc - void* calloc(size_t num, size_t size); 	|_ unsigned int, unsigned int _| return inicialized by 0 block of memory of X bytes
+		realloc - void* realloc(void* ptr, size_t size); 	|_ void*, unsigned int _| return reallocated new X size of memory for a existent block of memory of X bytes 
+	*/
+
+	// Deallocate block of memory
+	/*
+		free - void free(void*);
+	*/
+
+	int n;
+	printf("Enter the size of array\n");
+	scanf("%d", &n);
+
+	int *A = (int*)malloc(n * sizeof(int));
+
+	for(int i = 0; i < n; i++) {
+		A[i] = i + 1;
+	}
+
+	for(int i = 0; i < n; i++) {
+		printf("%d ", A[i]);
+	}
+
+	free(A);
+	A = NULL; // After free, adjust pointer to NULL
+
+	printf("\n");
+
+	int *B = (int*)calloc(n, sizeof(int));
+
+	for(int i = 0; i < n; i++) {
+		printf("%d ", B[i]);
+	}
+
+	free(B);
+	B = NULL;
+
+	printf("Enter the size of array\n");
+	scanf("%d", &n);
+
+	int *C = (int*)malloc(n * sizeof(int));
+
+	for(int i = 0; i < n; i++) {
+		C[i] = i + 1;
+	}
+
+	int *D = (int*)realloc(C, (n/2)*sizeof(int));
+	// int *C = (int*)realloc(C, 0); // equivalent to free(C)
+	// int *B = (int*)realloc(NULL, n*sizeof(int)); // equivalent to malloc
+
+	printf("Prev block address = %d, new address = %d\n", C, D);
+
+	for(int i = 0; i < 2 * n; i++) {
+		printf("%d\n", D[i]);
+	}
+}
+
+void _15_pointers_as_function_returns(void) {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
