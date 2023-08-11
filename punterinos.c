@@ -28,10 +28,12 @@ void _12_pointers_and_dynamic_memory(void);
 void _13_stack_vs_heap(void);
 void _14_malloc_calloc_realloc_free(void);
 void _15_pointers_as_function_returns(void);
+int* _15_01_add(int*, int*);
+void _16_function_pointers(void);
 
 int main(int argc, char const *argv[])
 {
-	_14_malloc_calloc_realloc_free();
+	_15_pointers_as_function_returns();
 	
 	return 0;
 }
@@ -403,14 +405,29 @@ void _14_malloc_calloc_realloc_free(void) {
 	}
 }
 
-void _15_pointers_as_function_returns(void) {
-	
+void _15_pointers_as_function_returns(void) { // calling function
+	int a = 2, b = 4;
+	// call by value
+	printf("Address of a in main = %d\n", &a);
+	int* ptr = _15_01_add(&a, &b);
+	printf("Address of a = %d, Address of b = %d\n", &a, &b);
+	printf("Sum = %d\n", *ptr); 	// value in a of main is copied to a fo add
+								// value in b of main is copied to b fo add
 }
 
+int* _15_01_add(int* a, int* b) { // called function
+	// a and b pointer to integers local to add
+	printf("Address of a in Add = %d\n", &a);
+	printf("Value in a of add (address of a of main) = %d\n", a);
+	printf("Address at address stored in a of add = %d\n", *a);
+	int* c = (int*)malloc(sizeof(int));
+	*c = *(a) + *(b);
+	return c;
+}
 
+void _16_function_pointers(void) {
 
-
-
+}
 
 
 
