@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <time.h>
+
 
 void _00_basics(void);
 void _01_pointer_arithmetic(void);
@@ -30,11 +33,39 @@ void _14_malloc_calloc_realloc_free(void);
 void _15_pointers_as_function_returns(void);
 int* _15_01_add(int*, int*);
 void _16_function_pointers(void);
+int _16_01_add(int, int);
+int *_16_02_func(int, int);		// Declaring a function that would return int*
+void _16_03_printHello(char*);
+void _17_function_pointers_and_callbacks(void);
+void _17_01_a(void);
+void _17_02_b(void(*)()); 	// Function pointer as argument
+void _18_function_pointers_and_callbacks_2(void);
+/*
+	callback function should compare two integers, should return 1 if first element has higher rank, 0 if
+	elements are equal and -1 if second element has higher rank
+ */
+void _18_01_bubbleSort(int*, int, int(*)(int, int));
+int _18_02_compare(int, int);
+int _18_03_absolute_compare(int, int);
+void _19_function_pointers_and_callbacks_3(void);
+int _19_01_compare(const void*, const void*);
+void _20_memory_leak(void);
+/*
+	"Simple Betting game"
+	"Jack Queen King - computer shuffles these cards"
+	player has to guess the position of queen
+	if he wins, he taken 3*bet
+	if he looses, he looses the bet amount.
+	player has $100 initially
+ */
+void _10_01_play(int);
+
+int cash = 100;
 
 int main(int argc, char const *argv[])
 {
-	_15_pointers_as_function_returns();
-	
+	_20_memory_leak();
+
 	return 0;
 }
 
@@ -426,8 +457,151 @@ int* _15_01_add(int* a, int* b) { // called function
 }
 
 void _16_function_pointers(void) {
+	int c;
+	int (*p)(int, int);
+	p = &_16_01_add;
+	// p = _16_01_add;  // function name will return us pointer
+	c = (*p)(2,3);		// de-referencing and executing the function
+	printf("%d\n", c);
 
+	int (*func)(int, int); 	// declaring a function pointer
+
+	void (*ptr)(char*);
+	ptr = _16_03_printHello;
+	ptr("Michael");
 }
+
+int _16_01_add(int a, int b) {
+	return a + b;
+}
+
+void _16_03_printHello(char* name) {
+	printf("Hello %s\n", name);
+}
+
+void _17_function_pointers_and_callbacks(void) {
+	void (*p)() = _17_01_a;
+	_17_02_b(p);	// _17_01_a is a callback function
+
+	_17_02_b(_17_01_a);
+}
+
+void _17_01_a(void) {
+	printf("Hello\n");
+}
+
+void _17_02_b(void(*ptr)()) {
+	ptr();	// call-back function that "ptr" points to
+}
+
+void _18_function_pointers_and_callbacks_2(void) {
+	// int i, A[] = {3,2,1,5,6,4};	// sort in increasing order => {1,2,3,4,5,6}
+	int i, A[] = {-31, 22, -1, 50, -6, 4};	// {-1, 4, -6, 22, -31, 50} -> de acuerdo a su valor absoluto
+	_18_01_bubbleSort(A, 6, _18_03_absolute_compare);
+	for(i = 0; i < 6; i++) 
+		printf("%d ", A[i]);
+}
+
+void _18_01_bubbleSort(int* A, int n, int (*compare)(int, int)) {
+	int i, j, temp;
+	for(i = 0; i < n; i++) {
+		for(j = 0; j < n - 1; j++) {	// compare A[j] with A[j + 1] and SWAP if needed
+			if(compare(A[j], A[j + 1]) > 0) {
+				temp = A[j];
+				A[j] = A[j + 1];
+				A[j + 1] = temp;
+			}
+		}
+	}
+}
+
+int _18_02_compare(int a, int b) {
+	if(a > b)
+		return 1;
+	else
+		return -1;
+}
+
+int _18_03_absolute_compare(int a, int b) {
+	if(abs(a) > abs(b))
+		return 1;
+	else
+		return -1;
+}
+
+void _19_function_pointers_and_callbacks_3(void) {
+	int i, A[] = {-31, 22, -1, 50, -6, 4};		// => {-1, 4, -6, 22, -31, 50}
+	qsort(A, 6, sizeof(int), _19_01_compare);
+	for(i = 0; i < 6; i++) 
+		printf("%d ", A[i]);
+}
+
+int _19_01_compare(const void* a, const void* b) {
+	int A = *((int*)a);		// typecasting to int* and getting value
+	int B = *((int*)b);		// typecasting to int* and getting value
+
+	return A - B; // menor a mayor (de negativos a positivos)
+	// return A - B; // mayor a menor (de positivos a negativos)
+	// return abs(A) - abs(B); // menor a mayor (valores absolutos, de menor a mayor sin importar el signo)
+	// return abs(B) - abs(A); // mayor a menor (valores absolutos, de mayor a menor sin importar el signo)
+}
+
+void _20_memory_leak(void) {
+	int bet;
+
+	printf("Welcome to the Virtual Casino\n");
+	printf("Total Cash = %d\n", cash);
+
+	while(cash > 0) {
+		printf("What´s your bet? $ ");
+		scanf("%d", &bet);
+		if(bet == 0 || bet > cash)
+			break;
+		_10_01_play(bet);
+		printf("\n ************************************* \n");
+	}
+}
+
+void _10_01_play(int bet) {
+	// char C[3] = {'J', 'Q', 'K'}; // stack
+	// char *C = (char*)malloc(3 * sizeof(char)); // heap // C++ char *C = new char[3];
+	char *C = (char*)malloc(10000 * sizeof(char));		// peligroso, liberar
+	C[0] = 'J';
+	C[1] = 'Q';
+	C[2] = 'K';
+	printf("Shuffling...");
+	srand(time(NULL));		// seeding random number generator
+	int i;
+	for(i = 0; i < 5; i++) {
+		int x = rand() % 3;
+		int y = rand() % 3;
+		int temp = C[x];
+		C[x] = C[y];
+		C[y] = temp;	// swap characters at position x and y
+	}
+
+	int playerGuess;
+	printf("What´s the position of queen - 1, 2 or 3? ");
+	scanf("%d", &playerGuess);
+	if(C[playerGuess - 1] == 'Q') {
+		cash += 3 * bet;
+		printf("You Win ! Result = \" %c %c %c \" Total Cash = %d\n", C[0], C[1], C[2], cash);
+	} else {
+		cash -= bet;
+		printf("You Loose ! Result = \" %c %c %c \" Total Cash = %d\n", C[0], C[1], C[2], cash);
+	}
+
+	free(C);
+}
+
+
+
+
+
+
+
+
+
 
 
 
